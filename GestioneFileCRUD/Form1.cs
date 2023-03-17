@@ -44,6 +44,26 @@ namespace GestioneFileCRUD
             AggFile(prodotto);
         }
 
+        private void leggi_Click(object sender, EventArgs e)
+        {
+            String line;
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sr = new StreamReader("prodotti.csv");
+                //leggo la prima riga
+                line = sr.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    visualizza.Items.Add(line);
+                    //legge la linea successiva
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+        }
+
         //funzioni di servizio
         public void AggFile(P prodotto)
         {
@@ -75,11 +95,6 @@ namespace GestioneFileCRUD
                 }
                 sr.Close();
             }
-        }
-
-        private void leggi_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }
