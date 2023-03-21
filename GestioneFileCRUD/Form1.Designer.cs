@@ -40,11 +40,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.visualizza = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
+            this.nomemod = new System.Windows.Forms.TextBox();
+            this.prezzomod = new System.Windows.Forms.TextBox();
+            this.quantita = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // aggiungi
             // 
-            this.aggiungi.Location = new System.Drawing.Point(58, 284);
+            this.aggiungi.Location = new System.Drawing.Point(65, 315);
             this.aggiungi.Name = "aggiungi";
             this.aggiungi.Size = new System.Drawing.Size(334, 23);
             this.aggiungi.TabIndex = 0;
@@ -54,16 +58,17 @@
             // 
             // cancella
             // 
-            this.cancella.Location = new System.Drawing.Point(58, 313);
+            this.cancella.Location = new System.Drawing.Point(65, 344);
             this.cancella.Name = "cancella";
             this.cancella.Size = new System.Drawing.Size(334, 24);
             this.cancella.TabIndex = 1;
             this.cancella.Text = "Cancella";
             this.cancella.UseVisualStyleBackColor = true;
+            this.cancella.Click += new System.EventHandler(this.cancella_Click);
             // 
             // leggi
             // 
-            this.leggi.Location = new System.Drawing.Point(58, 343);
+            this.leggi.Location = new System.Drawing.Point(65, 374);
             this.leggi.Name = "leggi";
             this.leggi.Size = new System.Drawing.Size(334, 24);
             this.leggi.TabIndex = 2;
@@ -73,12 +78,13 @@
             // 
             // modifica
             // 
-            this.modifica.Location = new System.Drawing.Point(58, 373);
+            this.modifica.Location = new System.Drawing.Point(65, 404);
             this.modifica.Name = "modifica";
             this.modifica.Size = new System.Drawing.Size(334, 22);
             this.modifica.TabIndex = 3;
             this.modifica.Text = "Modifica";
             this.modifica.UseVisualStyleBackColor = true;
+            this.modifica.Click += new System.EventHandler(this.modifica_Click);
             // 
             // label1
             // 
@@ -92,14 +98,14 @@
             // 
             // nome
             // 
-            this.nome.Location = new System.Drawing.Point(128, 165);
+            this.nome.Location = new System.Drawing.Point(32, 167);
             this.nome.Name = "nome";
             this.nome.Size = new System.Drawing.Size(190, 20);
             this.nome.TabIndex = 5;
             // 
             // prezzo
             // 
-            this.prezzo.Location = new System.Drawing.Point(128, 229);
+            this.prezzo.Location = new System.Drawing.Point(32, 231);
             this.prezzo.Name = "prezzo";
             this.prezzo.Size = new System.Drawing.Size(190, 20);
             this.prezzo.TabIndex = 6;
@@ -107,7 +113,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(173, 139);
+            this.label2.Location = new System.Drawing.Point(77, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 7;
@@ -116,7 +122,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 203);
+            this.label3.Location = new System.Drawing.Point(77, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 8;
@@ -126,7 +132,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(97, 95);
+            this.label4.Location = new System.Drawing.Point(114, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(250, 24);
             this.label4.TabIndex = 9;
@@ -135,11 +141,13 @@
             // visualizza
             // 
             this.visualizza.HideSelection = false;
+            this.visualizza.LabelWrap = false;
             this.visualizza.Location = new System.Drawing.Point(484, 124);
             this.visualizza.Name = "visualizza";
             this.visualizza.Size = new System.Drawing.Size(269, 271);
             this.visualizza.TabIndex = 10;
             this.visualizza.UseCompatibleStateImageBehavior = false;
+            this.visualizza.View = System.Windows.Forms.View.List;
             // 
             // label5
             // 
@@ -151,11 +159,45 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Lettura del File";
             // 
+            // nomemod
+            // 
+            this.nomemod.Location = new System.Drawing.Point(253, 167);
+            this.nomemod.Name = "nomemod";
+            this.nomemod.Size = new System.Drawing.Size(190, 20);
+            this.nomemod.TabIndex = 12;
+            // 
+            // prezzomod
+            // 
+            this.prezzomod.Location = new System.Drawing.Point(253, 231);
+            this.prezzomod.Name = "prezzomod";
+            this.prezzomod.Size = new System.Drawing.Size(190, 20);
+            this.prezzomod.TabIndex = 13;
+            // 
+            // quantita
+            // 
+            this.quantita.Location = new System.Drawing.Point(91, 261);
+            this.quantita.Name = "quantita";
+            this.quantita.Size = new System.Drawing.Size(131, 20);
+            this.quantita.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(38, 264);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Quantità";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.quantita);
+            this.Controls.Add(this.prezzomod);
+            this.Controls.Add(this.nomemod);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.visualizza);
             this.Controls.Add(this.label4);
@@ -190,6 +232,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListView visualizza;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox nomemod;
+        private System.Windows.Forms.TextBox prezzomod;
+        private System.Windows.Forms.TextBox quantita;
+        private System.Windows.Forms.Label label6;
     }
 }
 

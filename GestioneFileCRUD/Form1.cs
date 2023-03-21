@@ -40,11 +40,34 @@ namespace GestioneFileCRUD
         {
             prodotto.nome = nome.Text;
             prodotto.prezzo = float.Parse(prezzo.Text);
-            AggQuantFile();
-            AggFile(prodotto);
+            prodotto.quant = int.Parse(quantita.Text);
+            AggFile();
+        }
+
+        private void cancella_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void leggi_Click(object sender, EventArgs e)
+        {
+            Leggi();
+        }
+
+        private void modifica_Click(object sender, EventArgs e)
+        {
+            Modifica();
+        }
+
+        //funzioni di servizio
+        public void AggFile()
+        {
+            StreamWriter sw = new StreamWriter("prodotti.csv", true);
+            sw.WriteLine("Nome: " + prodotto.nome + "  Prezzo: " + prodotto.prezzo + "  Quantità: " + prodotto.quant);
+            sw.Close();
+        }
+
+        public void Leggi()
         {
             String line;
             if (File.Exists("prodotti.csv"))
@@ -64,17 +87,8 @@ namespace GestioneFileCRUD
             }
         }
 
-        //funzioni di servizio
-        public void AggFile(P prodotto)
+        public void Modifica()
         {
-            StreamWriter sw = new StreamWriter("prodotti.csv", true);
-            sw.WriteLine("Nome: " + prodotto.nome + "  Prezzo: " + prodotto.prezzo + " Quantità: " + prodotto.quant);
-            sw.Close();
-        }
-
-        public void AggQuantFile()
-        {
-            
             String line;
             if (File.Exists("prodotti.csv"))
             {
@@ -86,14 +100,39 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(' ');
-                    if (prodotto.nome == div[1])
+                    StreamWriter sw = new StreamWriter("appoggio.csv");
+                    if (nome.Text == div[1])
                     {
-                        prodotto.quant++;
+                        //"cancella", sostuisce
+                        sw.WriteLine("Nome: " + nomemod.Text + "  Prezzo: " + prezzomod.Text + "  Quantità: " + prodotto.quant);
                     }
+                    else
+                    {
+                        sw.WriteLine(line);
+                    }
+                    sw.Close();
                     //legge la linea successiva
                     line = sr.ReadLine();
                 }
                 sr.Close();
+            }
+
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sre = new StreamReader("appoggio.csv");
+                //leggo la prima riga
+                line = sre.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    StreamWriter sw = new StreamWriter("prodotti.csv");
+                    sw.WriteLine(line);
+                    sw.Close();
+                    //legge la linea successiva
+                    line = sre.ReadLine();
+                }
+                sre.Close();
             }
         }
     }
