@@ -46,7 +46,7 @@ namespace GestioneFileCRUD
 
         private void cancella_Click(object sender, EventArgs e)
         {
-            
+            Cancella();
         }
 
         private void leggi_Click(object sender, EventArgs e)
@@ -87,6 +87,55 @@ namespace GestioneFileCRUD
             }
         }
 
+        public void Cancella()
+        {
+            String line;
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sr = new StreamReader("prodotti.csv");
+                //leggo la prima riga
+                line = sr.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    string[] div = line.Split(' ');
+                    StreamWriter sw = new StreamWriter("appoggio.csv");
+                    if (nome.Text == div[1])
+                    {
+                        //"cancella"
+                        sw.WriteLine("");
+                    }
+                    else
+                    {
+                        sw.WriteLine(line);
+                    }
+                    sw.Close();
+                    //legge la linea successiva
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sr = new StreamReader("appoggio.csv");
+                //leggo la prima riga
+                line = sr.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    StreamWriter sw = new StreamWriter("prodotti.csv");
+                    sw.WriteLine(line);
+                    sw.Close();
+                    //legge la linea successiva
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+        }
+
         public void Modifica()
         {
             String line;
@@ -103,7 +152,7 @@ namespace GestioneFileCRUD
                     StreamWriter sw = new StreamWriter("appoggio.csv");
                     if (nome.Text == div[1])
                     {
-                        //"cancella", sostuisce
+                        //sostuisce
                         sw.WriteLine("Nome: " + nomemod.Text + "  Prezzo: " + prezzomod.Text + "  Quantità: " + prodotto.quant);
                     }
                     else
@@ -119,9 +168,9 @@ namespace GestioneFileCRUD
 
             if (File.Exists("prodotti.csv"))
             {
-                StreamReader sre = new StreamReader("appoggio.csv");
+                StreamReader sr = new StreamReader("appoggio.csv");
                 //leggo la prima riga
-                line = sre.ReadLine();
+                line = sr.ReadLine();
                 //controllo se i dati esistono
                 while (line != null)
                 {
@@ -130,9 +179,9 @@ namespace GestioneFileCRUD
                     sw.WriteLine(line);
                     sw.Close();
                     //legge la linea successiva
-                    line = sre.ReadLine();
+                    line = sr.ReadLine();
                 }
-                sre.Close();
+                sr.Close();
             }
         }
     }
