@@ -93,6 +93,7 @@ namespace GestioneFileCRUD
             if (File.Exists("prodotti.csv"))
             {
                 StreamReader sr = new StreamReader("prodotti.csv");
+                StreamWriter sw = new StreamWriter("appoggio.csv");
                 //leggo la prima riga
                 line = sr.ReadLine();
                 //controllo se i dati esistono
@@ -100,39 +101,20 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(' ');
-                    StreamWriter sw = new StreamWriter("appoggio.csv");
-                    if (nome.Text == div[1])
-                    {
-                        //"cancella"
-                        sw.WriteLine("");
-                    }
-                    else
+                    if (nome.Text != div[1])
                     {
                         sw.WriteLine(line);
                     }
-                    sw.Close();
                     //legge la linea successiva
                     line = sr.ReadLine();
                 }
+                sw.Close();
                 sr.Close();
             }
 
-            if (File.Exists("prodotti.csv"))
+            if (File.Exists("appoggio.csv"))
             {
-                StreamReader sr = new StreamReader("appoggio.csv");
-                //leggo la prima riga
-                line = sr.ReadLine();
-                //controllo se i dati esistono
-                while (line != null)
-                {
-                    //elabora i dati
-                    StreamWriter sw = new StreamWriter("prodotti.csv");
-                    sw.WriteLine(line);
-                    sw.Close();
-                    //legge la linea successiva
-                    line = sr.ReadLine();
-                }
-                sr.Close();
+                File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
             }
         }
 
@@ -142,6 +124,7 @@ namespace GestioneFileCRUD
             if (File.Exists("prodotti.csv"))
             {
                 StreamReader sr = new StreamReader("prodotti.csv");
+                StreamWriter sw = new StreamWriter("appoggio.csv");
                 //leggo la prima riga
                 line = sr.ReadLine();
                 //controllo se i dati esistono
@@ -149,7 +132,6 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(' ');
-                    StreamWriter sw = new StreamWriter("appoggio.csv");
                     if (nome.Text == div[1])
                     {
                         //sostuisce
@@ -159,29 +141,16 @@ namespace GestioneFileCRUD
                     {
                         sw.WriteLine(line);
                     }
-                    sw.Close();
                     //legge la linea successiva
                     line = sr.ReadLine();
                 }
                 sr.Close();
+                sw.Close();
             }
 
-            if (File.Exists("prodotti.csv"))
+            if (File.Exists("appoggio.csv"))
             {
-                StreamReader sr = new StreamReader("appoggio.csv");
-                //leggo la prima riga
-                line = sr.ReadLine();
-                //controllo se i dati esistono
-                while (line != null)
-                {
-                    //elabora i dati
-                    StreamWriter sw = new StreamWriter("prodotti.csv");
-                    sw.WriteLine(line);
-                    sw.Close();
-                    //legge la linea successiva
-                    line = sr.ReadLine();
-                }
-                sr.Close();
+                File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
             }
         }
     }
