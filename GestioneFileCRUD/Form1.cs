@@ -19,6 +19,7 @@ namespace GestioneFileCRUD
             public string nome;
             public float prezzo;
             public int quant;
+            public int c;
         }
         P prodotto;
 
@@ -41,6 +42,7 @@ namespace GestioneFileCRUD
             prodotto.nome = nome.Text;
             prodotto.prezzo = float.Parse(prezzo.Text);
             prodotto.quant = int.Parse(quantita.Text);
+            prodotto.c = 1;
             AggFile();
         }
 
@@ -63,7 +65,7 @@ namespace GestioneFileCRUD
         public void AggFile()
         {
             StreamWriter sw = new StreamWriter("prodotti.csv", true);
-            sw.WriteLine("Nome: " + prodotto.nome + "  Prezzo: " + prodotto.prezzo + "  Quantità: " + prodotto.quant);
+            sw.WriteLine("Nome: " + prodotto.nome + " Prezzo: " + prodotto.prezzo + " Quantità: " + prodotto.quant + " C: " + prodotto.c);
             sw.Close();
         }
 
@@ -79,7 +81,11 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    visualizza.Items.Add(line);
+                    string[] div = line.Split(' ');
+                    if (int.Parse(div.Last()) == 1)
+                    {
+                        visualizza.Items.Add(line);
+                    }
                     //legge la linea successiva
                     line = sr.ReadLine();
                 }
@@ -100,11 +106,13 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    string[] div = line.Split(' ');
+                    line.Remove(line.Length - 1, 1);
+                    line.Append('0');
+                    /*
                     if (nome.Text != div[1])
                     {
                         sw.WriteLine(line);
-                    }
+                    }*/
                     //legge la linea successiva
                     line = sr.ReadLine();
                 }
@@ -112,10 +120,10 @@ namespace GestioneFileCRUD
                 sr.Close();
             }
 
-            if (File.Exists("appoggio.csv"))
+            /*if (File.Exists("appoggio.csv"))
             {
                 File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
-            }
+            }*/
         }
 
         public void Modifica()
