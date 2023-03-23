@@ -106,8 +106,16 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    line.Remove(line.Length - 1, 1);
-                    line.Append('0');
+                    string[] div = line.Split(' ');
+                    if (nome.Text == div[1])
+                    {
+                        //sostuisce
+                        sw.WriteLine("Nome: " + nome.Text + "  Prezzo: " + prezzo.Text + "  Quantità: " + prodotto.quant + "  C: " + "0");
+                    }
+                    else
+                    {
+                        sw.WriteLine(line);
+                    }
                     /*
                     if (nome.Text != div[1])
                     {
@@ -120,10 +128,10 @@ namespace GestioneFileCRUD
                 sr.Close();
             }
 
-            /*if (File.Exists("appoggio.csv"))
+            if (File.Exists("prodotti.csv"))
             {
-                File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
-            }*/
+                File.Replace("appoggio.csv", "prodotti.csv", "backup1.csv");
+            }
         }
 
         public void Modifica()
@@ -143,7 +151,7 @@ namespace GestioneFileCRUD
                     if (nome.Text == div[1])
                     {
                         //sostuisce
-                        sw.WriteLine("Nome: " + nomemod.Text + "  Prezzo: " + prezzomod.Text + "  Quantità: " + prodotto.quant);
+                        sw.WriteLine("Nome: " + nomemod.Text + "  Prezzo: " + prezzomod.Text + "  Quantità: " + prodotto.quant + "  C: " + prodotto.c);
                     }
                     else
                     {
