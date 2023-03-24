@@ -61,16 +61,27 @@ namespace GestioneFileCRUD
             Modifica();
         }
 
+        private void recuperodato_Click(object sender, EventArgs e)
+        {
+            RecuperoDato();
+        }
+
+        private void ricomp_Click(object sender, EventArgs e)
+        {
+            Ricompattazione();
+        }
+
         //funzioni di servizio
         public void AggFile()
         {
             StreamWriter sw = new StreamWriter("prodotti.csv", true);
-            sw.WriteLine("Nome: " + prodotto.nome + " Prezzo: " + prodotto.prezzo + " Quantità: " + prodotto.quant + " C: " + prodotto.c);
+            sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + prodotto.c);
             sw.Close();
         }
 
         public void Leggi()
         {
+            visualizza.Items.Clear();
             String line;
             if (File.Exists("prodotti.csv"))
             {
@@ -81,7 +92,7 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    string[] div = line.Split(' ');
+                    string[] div = line.Split(';');
                     if (int.Parse(div.Last()) == 1)
                     {
                         visualizza.Items.Add(line);
@@ -106,11 +117,11 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    string[] div = line.Split(' ');
-                    if (nome.Text == div[1])
+                    string[] div = line.Split(';');
+                    if (nome.Text == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine("Nome: " + nome.Text + "  Prezzo: " + prezzo.Text + "  Quantità: " + prodotto.quant + "  C: " + "0");
+                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + "0");
                     }
                     else
                     {
@@ -147,11 +158,11 @@ namespace GestioneFileCRUD
                 while (line != null)
                 {
                     //elabora i dati
-                    string[] div = line.Split(' ');
-                    if (nome.Text == div[1])
+                    string[] div = line.Split(';');
+                    if (nome.Text == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine("Nome: " + nomemod.Text + "  Prezzo: " + prezzomod.Text + "  Quantità: " + prodotto.quant + "  C: " + prodotto.c);
+                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + prodotto.c);
                     }
                     else
                     {
@@ -169,5 +180,52 @@ namespace GestioneFileCRUD
                 File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
             }
         }
+
+        public void RecuperoDato()
+        {
+            String line;
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sr = new StreamReader("prodotti.csv");
+                StreamWriter sw = new StreamWriter("appoggio.csv");
+                //leggo la prima riga
+                line = sr.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    string[] div = line.Split(';');
+                    if (nome.Text == div[0])
+                    {
+                        //sostuisce
+                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + "1");
+                    }
+                    else
+                    {
+                        sw.WriteLine(line);
+                    }
+                    /*
+                    if (nome.Text != div[1])
+                    {
+                        sw.WriteLine(line);
+                    }*/
+                    //legge la linea successiva
+                    line = sr.ReadLine();
+                }
+                sw.Close();
+                sr.Close();
+            }
+
+            if (File.Exists("appoggio.csv"))
+            {
+                File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
+            }
+        }
+
+        public void Ricompattazione()
+        {
+
+        }
+
     }
 }

@@ -44,13 +44,16 @@
             this.prezzomod = new System.Windows.Forms.TextBox();
             this.quantita = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.recuperodato = new System.Windows.Forms.Button();
+            this.ricomp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // aggiungi
             // 
-            this.aggiungi.Location = new System.Drawing.Point(65, 315);
+            this.aggiungi.Location = new System.Drawing.Point(32, 313);
             this.aggiungi.Name = "aggiungi";
-            this.aggiungi.Size = new System.Drawing.Size(334, 23);
+            this.aggiungi.Size = new System.Drawing.Size(190, 23);
             this.aggiungi.TabIndex = 0;
             this.aggiungi.Text = "Aggiungi";
             this.aggiungi.UseVisualStyleBackColor = true;
@@ -58,9 +61,9 @@
             // 
             // cancella
             // 
-            this.cancella.Location = new System.Drawing.Point(65, 344);
+            this.cancella.Location = new System.Drawing.Point(32, 342);
             this.cancella.Name = "cancella";
-            this.cancella.Size = new System.Drawing.Size(334, 24);
+            this.cancella.Size = new System.Drawing.Size(190, 24);
             this.cancella.TabIndex = 1;
             this.cancella.Text = "Cancella";
             this.cancella.UseVisualStyleBackColor = true;
@@ -68,9 +71,9 @@
             // 
             // leggi
             // 
-            this.leggi.Location = new System.Drawing.Point(65, 374);
+            this.leggi.Location = new System.Drawing.Point(32, 372);
             this.leggi.Name = "leggi";
-            this.leggi.Size = new System.Drawing.Size(334, 24);
+            this.leggi.Size = new System.Drawing.Size(190, 24);
             this.leggi.TabIndex = 2;
             this.leggi.Text = "Leggi";
             this.leggi.UseVisualStyleBackColor = true;
@@ -78,9 +81,9 @@
             // 
             // modifica
             // 
-            this.modifica.Location = new System.Drawing.Point(65, 404);
+            this.modifica.Location = new System.Drawing.Point(32, 402);
             this.modifica.Name = "modifica";
-            this.modifica.Size = new System.Drawing.Size(334, 22);
+            this.modifica.Size = new System.Drawing.Size(190, 22);
             this.modifica.TabIndex = 3;
             this.modifica.Text = "Modifica";
             this.modifica.UseVisualStyleBackColor = true;
@@ -92,9 +95,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(25, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(394, 39);
+            this.label1.Size = new System.Drawing.Size(393, 39);
             this.label1.TabIndex = 4;
-            this.label1.Text = "CRUD per la Gestione FIle";
+            this.label1.Text = "CRUD per la Gestione File";
             // 
             // nome
             // 
@@ -189,11 +192,43 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Quantità";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(328, 141);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Modifica";
+            // 
+            // recuperodato
+            // 
+            this.recuperodato.Location = new System.Drawing.Point(253, 313);
+            this.recuperodato.Name = "recuperodato";
+            this.recuperodato.Size = new System.Drawing.Size(190, 23);
+            this.recuperodato.TabIndex = 17;
+            this.recuperodato.Text = "Recupero di un dato";
+            this.recuperodato.UseVisualStyleBackColor = true;
+            this.recuperodato.Click += new System.EventHandler(this.recuperodato_Click);
+            // 
+            // ricomp
+            // 
+            this.ricomp.Location = new System.Drawing.Point(253, 342);
+            this.ricomp.Name = "ricomp";
+            this.ricomp.Size = new System.Drawing.Size(190, 23);
+            this.ricomp.TabIndex = 18;
+            this.ricomp.Text = "Ricompattazione";
+            this.ricomp.UseVisualStyleBackColor = true;
+            this.ricomp.Click += new System.EventHandler(this.ricomp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ricomp);
+            this.Controls.Add(this.recuperodato);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.quantita);
             this.Controls.Add(this.prezzomod);
@@ -236,6 +271,9 @@
         private System.Windows.Forms.TextBox prezzomod;
         private System.Windows.Forms.TextBox quantita;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button recuperodato;
+        private System.Windows.Forms.Button ricomp;
     }
 }
 
