@@ -121,7 +121,7 @@ namespace GestioneFileCRUD
                     if (nome.Text == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + "0");
+                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + quantita.Text + ";" + "0");
                     }
                     else
                     {
@@ -224,8 +224,38 @@ namespace GestioneFileCRUD
 
         public void Ricompattazione()
         {
+            String line;
+            if (File.Exists("prodotti.csv"))
+            {
+                StreamReader sr = new StreamReader("prodotti.csv");
+                StreamWriter sw = new StreamWriter("appoggio.csv");
+                //leggo la prima riga
+                line = sr.ReadLine();
+                //controllo se i dati esistono
+                while (line != null)
+                {
+                    //elabora i dati
+                    string[] div = line.Split(';');
+                    if (int.Parse(div.Last()) != 0)
+                    {
+                        sw.WriteLine(line);
+                    }
+                    /*
+                    if (nome.Text != div[1])
+                    {
+                        sw.WriteLine(line);
+                    }*/
+                    //legge la linea successiva
+                    line = sr.ReadLine();
+                }
+                sw.Close();
+                sr.Close();
+            }
 
+            if (File.Exists("appoggio.csv"))
+            {
+                File.Replace("appoggio.csv", "prodotti.csv", "backup.csv");
+            }
         }
-
     }
 }
