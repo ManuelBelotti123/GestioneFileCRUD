@@ -121,14 +121,15 @@ namespace GestioneFileCRUD
                     if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(div[0] + ";" + div[1] + ";" + div[2] + ";" + "0");
+                        line = div[0] + ';' + div[1] + ';' + div[2] + ';' + "0";
+                        sw.WriteLine(line);
                     }
                     else
                     {
                         sw.WriteLine(line);
                     }
                     /*
-                    if (nome != div[1])
+                    if (nome != div[0])
                     {
                         sw.WriteLine(line);
                     }*/
@@ -162,7 +163,8 @@ namespace GestioneFileCRUD
                     if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(m + ";" + div[1] + ";" + div[2] + ";" + div[3]);
+                        line = m + ';' + div[1] + ';' + div[2] + ';' + div[3];
+                        sw.WriteLine(line);
                     }
                     else
                     {
@@ -198,7 +200,8 @@ namespace GestioneFileCRUD
                     if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(div[0] + ";" + div[1] + ";" + div[2] + ";" + "1");
+                        line = div[0] + ';' + div[1] + ';' + div[2] + ';' + "1";
+                        sw.WriteLine(line);
                     }
                     else
                     {
