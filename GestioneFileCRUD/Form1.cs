@@ -43,27 +43,27 @@ namespace GestioneFileCRUD
             prodotto.prezzo = float.Parse(prezzo.Text);
             prodotto.quant = int.Parse(quantita.Text);
             prodotto.c = 1;
-            AggFile();
+            AggFile(prodotto);
         }
 
         private void cancella_Click(object sender, EventArgs e)
         {
-            Cancella();
+            Cancella(nome.Text);
         }
 
         private void leggi_Click(object sender, EventArgs e)
         {
-            Leggi();
+            Leggi(prodotto);
         }
 
         private void modifica_Click(object sender, EventArgs e)
         {
-            Modifica();
+            Modifica(nome.Text, nomemod.Text);
         }
 
         private void recuperodato_Click(object sender, EventArgs e)
         {
-            RecuperoDato();
+            RecuperoDato(nome.Text);
         }
 
         private void ricomp_Click(object sender, EventArgs e)
@@ -72,14 +72,14 @@ namespace GestioneFileCRUD
         }
 
         //funzioni di servizio
-        public void AggFile()
+        public void AggFile(P prodotto)
         {
             StreamWriter sw = new StreamWriter("prodotti.csv", true);
-            sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + prodotto.c);
+            sw.WriteLine(prodotto.nome + ";" + prodotto.prezzo + ";" + prodotto.quant + ";" + prodotto.c);
             sw.Close();
         }
 
-        public void Leggi()
+        public void Leggi(P prodotto)
         {
             visualizza.Items.Clear();
             String line;
@@ -104,7 +104,7 @@ namespace GestioneFileCRUD
             }
         }
 
-        public void Cancella()
+        public void Cancella(string n)
         {
             String line;
             if (File.Exists("prodotti.csv"))
@@ -118,17 +118,17 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(';');
-                    if (nome.Text == div[0])
+                    if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + quantita.Text + ";" + "0");
+                        sw.WriteLine(div[0] + ";" + div[1] + ";" + div[2] + ";" + "0");
                     }
                     else
                     {
                         sw.WriteLine(line);
                     }
                     /*
-                    if (nome.Text != div[1])
+                    if (nome != div[1])
                     {
                         sw.WriteLine(line);
                     }*/
@@ -145,7 +145,7 @@ namespace GestioneFileCRUD
             }
         }
 
-        public void Modifica()
+        public void Modifica(string n, string m)
         {
             String line;
             if (File.Exists("prodotti.csv"))
@@ -159,10 +159,10 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(';');
-                    if (nome.Text == div[0])
+                    if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + prodotto.c);
+                        sw.WriteLine(m + ";" + div[1] + ";" + div[2] + ";" + div[3]);
                     }
                     else
                     {
@@ -181,7 +181,7 @@ namespace GestioneFileCRUD
             }
         }
 
-        public void RecuperoDato()
+        public void RecuperoDato(string n)
         {
             String line;
             if (File.Exists("prodotti.csv"))
@@ -195,10 +195,10 @@ namespace GestioneFileCRUD
                 {
                     //elabora i dati
                     string[] div = line.Split(';');
-                    if (nome.Text == div[0])
+                    if (n == div[0])
                     {
                         //sostuisce
-                        sw.WriteLine(nome.Text + ";" + prezzo.Text + ";" + prodotto.quant + ";" + "1");
+                        sw.WriteLine(div[0] + ";" + div[1] + ";" + div[2] + ";" + "1");
                     }
                     else
                     {
